@@ -38,15 +38,15 @@ function isEmpty(str) {
 }
 
 function sendRequest(name, phone, address, goods, sum) {
-    let data = {goods: [], order: {}};
+    let data = {client: '', order: {}, goods: []};
 
     data.client = name + ' ' + phone;
 
-    let street = (isEmpty( address.street )) ? '' : 'ул.' + address.street + ', ';
-    let house = (isEmpty( address.house )) ? '' : 'д.' + address.house + ', ';
-    let entrance = (isEmpty( address.entrance)) ? '' : 'п.' + address.entrance + ', ';
-    let floor = (isEmpty( address.floor )) ? address.floor : 'эт.' + address.floor + ', ';
-    let flat = (isEmpty( address.flat )) ? address.flat : 'кв.' + address.flat;
+    let street = (isEmpty( address.street )) ? '' : 'ул. ' + address.street + ', ';
+    let house = (isEmpty( address.house )) ? '' : 'дом ' + address.house + ', ';
+    let entrance = (isEmpty( address.entrance)) ? '' : address.entrance + ' подъезд, ';
+    let floor = (isEmpty( address.floor )) ? address.floor : address.floor + ' этаж, ';
+    let flat = (isEmpty( address.flat )) ? address.flat : 'кв. ' + address.flat;
 
     data.order.address = street + house + entrance + floor + flat;
     data.order.sum =  sum;
