@@ -33,20 +33,31 @@
 //    }
 // }
 
+function isEmpty(str) {
+    return (!str || str.length === 0 );
+}
+
 function sendRequest(name, phone, address, goods, sum) {
-    let data = {goods2: [], order: {}};
+    let data = {goods: [], order: {}};
+
+    data.client = name + phone;
+
+    let street = (isEmpty( address.street )) ? '' : 'ул.' + address.street + ', ';
+    let house = (isEmpty( address.house )) ? '' : 'д.' + address.house + ', ';
+    let entrance = (isEmpty( address.entrance)) ? '' : 'п.' + address.entrance + ', ';
+    let floor = (isEmpty( address.floor )) ? address.floor : 'ул.' + address.floor + ', ';
+    let flat = (isEmpty( address.flat )) ? address.flat : 'ул.' + address.flat;
+
+    data.order.address = street + house + entrance + floor + flat;
+    data.order.sum =  sum;
 
     let countOfGoods = goods.length;
  
     for (let i = 0; i < countOfGoods; i += 1) {
-        data.goods2.push({ title: goods[i].title, count: goods[i].count});
+        data.goods.push({ title: goods[i].title, count: goods[i].count});
     }
 
-    data.order.address = address;
-    data.order.sum =  sum;
-    data.client = name + phone;
-
-    let jsonData = JSON.stringify(data);
+     let jsonData = JSON.stringify(data);
 
     return jsonData;
 }
