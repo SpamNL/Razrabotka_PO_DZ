@@ -34,12 +34,12 @@
 // }
 
 function sendRequest(name, phone, address, goods, sum) {
-    let data = {goods: [], order: {}};
+    let data = {goods2: [], order: {}};
 
     let countOfGoods = goods.length;
-
-    for (let i = 0; i <= countOfGoods; i += 1) {
-        data.goods.push({ title: goods[i].title, count: goods[i].count});
+ 
+    for (let i = 0; i < countOfGoods; i += 1) {
+        data.goods2.push({ title: goods[i].title, count: goods[i].count});
     }
 
     data.order.address = address;
