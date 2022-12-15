@@ -40,13 +40,13 @@ function isEmpty(str) {
 function sendRequest(name, phone, address, goods, sum) {
     let data = {goods: [], order: {}};
 
-    data.client = name + phone;
+    data.client = name + ' ' + phone;
 
     let street = (isEmpty( address.street )) ? '' : 'ул.' + address.street + ', ';
     let house = (isEmpty( address.house )) ? '' : 'д.' + address.house + ', ';
     let entrance = (isEmpty( address.entrance)) ? '' : 'п.' + address.entrance + ', ';
-    let floor = (isEmpty( address.floor )) ? address.floor : 'ул.' + address.floor + ', ';
-    let flat = (isEmpty( address.flat )) ? address.flat : 'ул.' + address.flat;
+    let floor = (isEmpty( address.floor )) ? address.floor : 'эт.' + address.floor + ', ';
+    let flat = (isEmpty( address.flat )) ? address.flat : 'кв.' + address.flat;
 
     data.order.address = street + house + entrance + floor + flat;
     data.order.sum =  sum;
